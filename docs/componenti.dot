@@ -1,0 +1,16 @@
+digraph EDC {
+  graph [rankdir=LR, labelloc=t, label="Rijksmuseum EDC essenziale — 1 Data Plane Java", fontname="Helvetica"];
+  node [shape=box, style="rounded",fontname="Helvetica"];
+  P [label="Provider Control Plane\nprovider.jar\nPolicy Engine + registro"];
+  C [label="Consumer Control Plane\nconsumer.jar\nCatalogo + contratti"];
+  D [label="Data Plane Java condiviso\nESPOSIZIONE + RICEZIONE\nSHA-256",penwidth=2];
+  A [label="OAuth2/JWKS\nauth-service"];
+  F [label="JSON Sculture\nmount RO",shape=folder];
+  R [label="JSON ricevuto\nricevuta + SHA-256",shape=folder];
+  P -> C [dir=both,label="DSP 2025-1"];
+  P -> D [label="DPS Provider"];
+  C -> D [label="DPS Consumer"];
+  A -> D [style=dotted,label="JWT/JWKS"];
+  F -> D [label="lettura"];
+  D -> R [label="salvataggio"];
+}

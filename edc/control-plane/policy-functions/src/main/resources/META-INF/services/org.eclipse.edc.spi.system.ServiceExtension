@@ -1,0 +1,2 @@
+org.eclipse.edc.sample.extension.policy.IamClaimsExtension
+org.eclipse.edc.sample.extension.policy.PolicyFunctionsExtension

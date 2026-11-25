@@ -1,0 +1,127 @@
+/* Aggiornamento additivo: non altera portal.css e style.css approvati. */
+body.home-unified { height:100vh; height:100dvh; overflow:hidden; grid-template-rows:77px minmax(0,1fr); }
+body.home-unified .portal-header { position:relative; z-index:2; }
+.home-stage { min-height:0; height:100%; display:grid; place-items:center; padding:22px; background:radial-gradient(ellipse at 50% 70%,rgba(122,89,53,.13),transparent 65%),#090c11; overflow:hidden; }
+.home-choice { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; width:min(720px,100%); }
+.home-role { position:relative; display:flex; align-items:center; justify-content:center; min-height:230px; padding:22px; border-radius:11px; border:1px solid rgba(214,181,138,.4); background:linear-gradient(140deg,#141720,#101218); text-decoration:none; color:#eadcc6; transition:border-color .15s ease,background .15s ease; }
+.home-role strong { font:400 clamp(36px,4.4vw,56px)/1.05 Baskerville,Palatino,Georgia,serif; letter-spacing:-.035em; }
+.home-role:hover,.home-role:focus-visible { border-color:#d4b58a; background:#201d1e; }
+.home-role .role-number { position:absolute; top:21px; left:23px; font-size:10px; letter-spacing:.18em; color:#d4b58a; }
+.home-role .role-arrow { position:absolute; right:23px; bottom:18px; font-size:24px; color:#d4b58a; }
+body.provider-unified .provider-controls { display:flex; justify-content:flex-start; align-items:center; gap:20px; margin-bottom:22px; }
+body.provider-unified #providerDashboard[hidden],body.provider-unified #providerLogin[hidden],body.provider-unified #providerGallery[hidden] { display:none !important; }
+.provider-login-form label { display:block; color:#c3b8ac; font-size:11px; margin-bottom:12px; }
+.provider-login-form input { flex:1; min-width:0; color:#f0dfc8; background:#15161d; border:1px solid #8e755a; border-radius:9px; padding:11px 13px; font-size:14px; }
+.provider-status-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.provider-stat { padding:17px; border:1px solid var(--border); border-radius:10px; background:#111318; min-width:0; }
+.provider-stat small { display:block; font-size:9px; font-weight:700; letter-spacing:.11em; color:#aa9580; }
+.provider-stat strong { display:block; margin-top:9px; font:400 20px/1.3 var(--serif); overflow-wrap:anywhere; }
+.provider-note,.provider-diagnostics { font-size:11px; color:#b5a89a; line-height:1.6; margin:15px 0; }
+.provider-diagnostics p { border-left:2px solid #8f6d4d; padding-left:10px; margin:7px 0; }
+.provider-selected { margin-top:20px; }
+.provider-facts { margin:0 0 18px; }
+.provider-facts div { display:grid; grid-template-columns:35% 1fr; align-items:start; gap:15px; padding:12px 0; border-bottom:1px solid var(--border); }
+.provider-facts dt { color:#a59b8f; font-size:11px; }
+.provider-facts dd { margin:0; font-size:12px; color:#ebdfcc; overflow-wrap:anywhere; }
+.provider-formula { font:400 28px/1.2 var(--serif); color:#dbc092 !important; letter-spacing:-.02em; }
+.provider-dual { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; margin:22px 0; }
+.provider-dual h4 { font:400 21px/1.2 var(--serif); color:#e8d8bf; margin:0 0 11px; }
+.provider-record-list { background:#111318; border:1px solid var(--border); border-radius:10px; padding:12px; font-size:11px; color:#b6ab9b; line-height:1.65; overflow-wrap:anywhere; }
+.provider-record { padding:9px 0; border-bottom:1px solid rgba(214,181,138,.16); }
+.provider-record:last-child { border-bottom:0; }
+.provider-record strong { display:block; color:#e7d4b9; font-size:11px; font-weight:600; overflow-wrap:anywhere; }
+.provider-record span { display:block; color:#aca098; }
+@media(max-width:760px){body.home-unified{grid-template-rows:70px minmax(0,1fr)}.home-stage{padding:18px}.home-role{min-height:170px}.home-role strong{font-size:34px}.provider-status-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.home-choice{grid-template-columns:1fr;max-width:360px}.home-role{min-height:128px}.provider-dual{grid-template-columns:1fr}.provider-status-grid{grid-template-columns:1fr}.provider-login-form .input-row{flex-direction:column}.provider-login-form .btn{width:100%}}
+@media(max-height:480px){.home-role{min-height:100px}.home-role strong{font-size:30px}.home-stage{padding:8px}.home-choice{gap:8px}}
+
+/* V1.2: sole sezioni Provider 01, 03 e 04. Nessun CSS del Consumer modificato. */
+body.provider-unified .provider-technical-id{display:block;margin-top:7px;font:10px/1.45 ui-monospace,Menlo,monospace;color:#a69d92;overflow-wrap:anywhere}
+body.provider-unified .provider-technical-id[hidden]{display:none}
+body.provider-unified .provider-summary-line{margin:18px 0;color:#bcb0a1;font-size:12px;line-height:1.65}
+body.provider-unified .provider-shared-policy{padding:18px 19px;border-radius:10px;border:1px solid var(--border);background:#111318;margin:14px 0 23px}
+body.provider-unified .provider-shared-policy .eyebrow{display:block;margin-bottom:7px}
+body.provider-unified .provider-shared-policy h4{font:400 23px/1.18 var(--serif);margin:0 0 8px;color:#edddc7}
+body.provider-unified .provider-shared-policy p{font-size:12px;color:#b9afa3;line-height:1.65;margin:4px 0}
+body.provider-unified .provider-slab-head{display:flex;flex-direction:column;gap:6px;margin:26px 0 14px}
+body.provider-unified .provider-slab-head h4{font:400 24px/1.2 var(--serif);margin:0;color:#eadac4}
+body.provider-unified .provider-slab-head p{font-size:11px;color:#a9a096;margin:0}
+body.provider-unified .provider-contract-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:12px;margin:0 0 22px}
+body.provider-unified .provider-contract-card{border:1px solid var(--border);background:#111318;border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:11px;min-width:0;height:100%}
+body.provider-unified .provider-contract-card h5{font:400 22px/1.17 var(--serif);margin:0;color:#eedfc8;overflow-wrap:anywhere}
+body.provider-unified .provider-contract-meta{display:grid;grid-template-columns:1fr;gap:8px;margin:0}
+body.provider-unified .provider-contract-meta div{border-top:1px solid rgba(214,181,138,.13);padding-top:7px}
+body.provider-unified .provider-contract-meta dt{font:700 10px/1.45 sans-serif;letter-spacing:.06em;color:#ae9b80}
+body.provider-unified .provider-contract-meta dd{margin:3px 0 0;color:#d5cabc;font-size:11px;line-height:1.55;overflow-wrap:anywhere}
+body.provider-unified .provider-contract-card .technical{margin-top:auto}
+body.provider-unified .provider-contract-card .technical code{font-size:10px}
+body.provider-unified .provider-extra-list{font-size:11px;color:#b9afa4;margin:10px 0;overflow-wrap:anywhere}
+body.provider-unified .provider-extra-list p{border-bottom:1px solid rgba(214,181,138,.13);padding:6px 0}
+body.provider-unified .provider-workflow-guide{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;padding:17px;border:1px solid var(--border);border-radius:10px;background:#0f1117}
+body.provider-unified .provider-workflow-guide>div{min-width:0}
+body.provider-unified .provider-workflow-guide strong{font:400 22px/1.2 var(--serif);color:#ebddca;display:block;margin:4px 0 6px}
+body.provider-unified .provider-workflow-guide p{font-size:11px;line-height:1.5;margin:0;color:#aea397}
+body.provider-unified .provider-step-num{font-size:10px;font-weight:700;letter-spacing:.12em;color:#c9a879}
+body.provider-unified .provider-flow-arrow{color:#d1ae80;font-size:24px}
+body.provider-unified .provider-workflow-list{display:grid;gap:14px;margin:15px 0 18px}
+body.provider-unified .provider-workflow-card{background:#111318;border:1px solid var(--border);border-radius:11px;padding:19px;min-width:0}
+body.provider-unified .provider-workflow-card-header{display:flex;flex-direction:column;gap:3px;margin-bottom:13px}
+body.provider-unified .provider-workflow-card-header h4{font:400 23px/1.2 var(--serif);color:#edddc7;margin:2px 0 4px;overflow-wrap:anywhere}
+body.provider-unified .provider-workflow-agreement{font-size:11px;color:#b5ab9e;overflow-wrap:anywhere}
+body.provider-unified .provider-stage-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:stretch}
+body.provider-unified .provider-stage{padding:13px 14px;background:#0b0e13;border:1px solid rgba(214,181,138,.2);border-radius:9px;min-width:0}
+body.provider-unified .provider-stage h5{font:700 11px/1.4 sans-serif;letter-spacing:.05em;color:#c8a779;margin:0 0 10px}
+body.provider-unified .provider-stage-entry + .provider-stage-entry{border-top:1px solid rgba(214,181,138,.16);margin-top:13px;padding-top:12px}
+body.provider-unified .provider-stage-status{display:block;font-size:14px;font-weight:600;color:#e8d8c2}
+body.provider-unified .provider-stage-code{display:block;color:#a89d8f;font-size:10px;line-height:1.5;overflow-wrap:anywhere;margin-top:5px}
+body.provider-unified .provider-stage-explain{display:block;color:#bcb1a4;font-size:11px;line-height:1.5;margin-top:7px}
+body.provider-unified .provider-stage-missing{color:#aea396;font-size:11px;line-height:1.55}
+body.provider-unified .provider-workflow-link{display:flex;align-items:center;color:#c9a879;font-size:22px}
+body.provider-unified .provider-workflow-relation{font-size:10px;color:#a9a098;margin:12px 0 0;line-height:1.6}
+@media(max-width:680px){body.provider-unified .provider-contract-grid{grid-template-columns:1fr}body.provider-unified .provider-workflow-guide{grid-template-columns:1fr;gap:8px}body.provider-unified .provider-flow-arrow{text-align:center;transform:rotate(90deg)}body.provider-unified .provider-stage-grid{grid-template-columns:1fr;gap:9px}body.provider-unified .provider-workflow-link{justify-content:center;transform:rotate(90deg)}}
+
+/* V1.3: informazioni cronologiche e diagnostica visibile solo quando necessaria. */
+body.provider-unified .provider-workflow-date{font-size:11px;line-height:1.45;color:#ddc09b;margin:3px 0 5px}
+body.provider-unified #providerDiagnostics[hidden]{display:none}
+
+/* V1.4: richieste di accesso negate — indicazione informativa, non trasferimento fittizio. */
+body.provider-unified .provider-workflow-outcome{display:inline-flex;align-self:flex-start;color:#dbb68d;border:1px solid rgba(214,181,138,.32);border-radius:6px;padding:4px 7px;font:700 9px/1.35 sans-serif;letter-spacing:.09em;margin-bottom:4px}
+body.provider-unified .provider-stage-status.provider-rejected{color:#e6bea0}
+
+/* V1.6 · Gestione Contract Definition e anteprima non operativa nuovi dataset. */
+body.provider-unified .provider-manage-intro,
+body.provider-unified .provider-future-area{border:1px solid rgba(214,181,138,.26);border-radius:11px;background:#111318;padding:19px;margin:14px 0 18px}
+body.provider-unified .provider-manage-intro h4,
+body.provider-unified .provider-future-area h4{font:400 24px/1.2 var(--serif);color:#e9d8bf;margin:8px 0}
+body.provider-unified .provider-manage-intro p,
+body.provider-unified .provider-future-area p{font-size:12px;line-height:1.7;color:#b9afa2;margin:8px 0}
+body.provider-unified .provider-offer-notice{font-size:11px;line-height:1.65;color:#dfc4a4;margin:12px 0 16px;overflow-wrap:anywhere}
+body.provider-unified .provider-offers-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+body.provider-unified .provider-offer-card{display:flex;flex-direction:column;gap:8px;min-width:0;border:1px solid var(--border);border-radius:10px;background:#101217;padding:16px}
+body.provider-unified .provider-offer-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+body.provider-unified .provider-offer-card-head h5{font:400 19px/1.3 var(--serif);color:#eadbc8;margin:0}
+body.provider-unified .provider-offer-pill{font:700 9px/1.4 sans-serif;letter-spacing:.04em;padding:5px 8px;border-radius:6px;border:1px solid rgba(190,175,150,.35);white-space:nowrap}
+body.provider-unified .provider-offer-pill.is-live{color:#dbcdaf;border-color:#9a825f}
+body.provider-unified .provider-offer-pill.is-revoked{color:#ecc0a5;border-color:#ac735b}
+body.provider-unified .provider-offer-pill.is-neutral{color:#aeb0b6}
+body.provider-unified .provider-offer-asset{font-size:10px;line-height:1.6;color:#a8a19a;overflow-wrap:anywhere;margin:0}
+body.provider-unified .provider-offer-note{font-size:11px;line-height:1.5;color:#b4a99a;margin:0}
+body.provider-unified .provider-offer-actions{margin-top:auto;padding-top:11px}
+body.provider-unified .provider-offer-actions .btn{font-size:11px;min-width:160px}
+body.provider-unified .provider-offer-no-action{display:block;color:#999;line-height:1.5;font-size:11px}
+body.provider-unified #providerOfferConfirmation[hidden]{display:none!important}
+body.provider-unified .provider-offer-confirmation{border:1px solid #b99a71;background:#18171a;border-radius:11px;padding:20px;margin:22px 0}
+body.provider-unified .provider-offer-confirmation h4{font:400 25px/1.25 var(--serif);margin:7px 0 12px;color:#eed9b8}
+body.provider-unified .provider-offer-confirmation p{font-size:12px;line-height:1.65;color:#c9b7a2}
+body.provider-unified .provider-confirm-definition{overflow-wrap:anywhere}
+body.provider-unified .provider-offer-confirmation label{display:block;font-size:11px;color:#e1c6a5;margin:12px 0 7px}
+body.provider-unified .provider-offer-confirmation input,
+body.provider-unified .provider-future-fields input{width:100%;min-width:0;border:1px solid #766855;border-radius:8px;background:#111318;color:#f2dfc8;padding:11px 12px;font-size:12px;box-sizing:border-box}
+body.provider-unified .provider-confirm-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+body.provider-unified .provider-future-details{margin-top:15px;border-top:1px solid rgba(214,181,138,.18);padding-top:13px}
+body.provider-unified .provider-future-details summary{color:#e7d0ae;cursor:pointer;font-size:12px}
+body.provider-unified .provider-future-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:18px 0}
+body.provider-unified .provider-future-fields label{font-size:11px;color:#c4b8a5;display:block}
+body.provider-unified .provider-future-fields input{margin-top:7px;opacity:.65}
+body.provider-unified .provider-future-details button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:760px){body.provider-unified .provider-offers-grid,body.provider-unified .provider-future-fields{grid-template-columns:1fr}}

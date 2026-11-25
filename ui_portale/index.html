@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Discovery & Data Access · Rijksmuseum Data Space</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/portal.css">
+  <script defer src="/config.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body class="portal-page">
+<header class="portal-header">
+  <a href="/" class="portal-brand" aria-label="Rijksmuseum Data Space, pagina iniziale"><span class="brand-r">R<span>·</span></span><span class="brand-words">Rijksmuseum<small>DATA SPACE</small></span></a>
+  <span class="header-descriptor">CONSUMER PORTAL <span class="header-sep">/</span> DISCOVERY & DATA ACCESS</span>
+  <span class="connection" id="connectState"><i></i> PORTALE LOCALE</span>
+</header>
+<div class="portal-shell">
+  <aside class="portal-art" aria-label="Scultura nella composizione artistica del portale">
+    <div class="hero-photo" role="img" aria-label="Statua classica su sfondo scuro"></div>
+    <div class="hero-grain"></div>
+    <div class="art-top"><span class="tiny-rule"></span> THE COLLECTION · DATA SOVEREIGNTY</div>
+    <div class="art-bottom">
+      <div class="hero-index">RIJKSMUSEUM <span>·</span> AMSTERDAM</div>
+      <h1>Discover.<br><em>Negotiate.</em><br>Access.</h1>
+      <p>I dati non si consultano direttamente: si scoprono, si richiedono e si ricevono secondo condizioni condivise.</p>
+      <div class="art-bottom-line"><span>PROGETTO SPERIMENTALE</span><span>01 / 03</span></div>
+    </div>
+  </aside>
+  <main class="portal-main" id="main">
+    <section class="portal-intro">
+      <span class="overline"><i></i> CONSUMER PORTAL</span>
+      <h2>Rijksmuseum<br><em>Data Space.</em></h2>
+      <p>Esplora le offerte del Provider. Seleziona un dataset, richiedi l'accesso e visualizza le opere soltanto dopo un trasferimento verificato.</p>
+    </section>
+
+    <section class="flow-section" id="identitySection" aria-labelledby="s1">
+      <div class="section-head"><span class="section-number">01</span><div><h3 id="s1">Identità e partecipanti</h3><p>Seleziona chi richiede i dati al Rijksmuseum.</p></div></div>
+      <div class="participant-grid">
+        <div class="participant-card"><span class="eyebrow">CONSUMER ATTIVO</span><strong id="activeIdentity">—</strong><span id="activeIdentityLabel" class="participant-description">Identità in lettura…</span></div>
+        <div class="participant-card"><span class="eyebrow">PROVIDER</span><strong>Rijksmuseum</strong><span class="participant-description">Connector EDC</span></div>
+      </div>
+      <span class="field-label" id="identityFieldLabel">Scegli un'identità</span>
+      <div class="input-row">
+        <div class="identity-picker" id="identityPicker">
+          <select id="identitySelect" aria-hidden="true" tabindex="-1" hidden><option value="">Caricamento identità…</option></select>
+          <button class="identity-choice-trigger" id="identityTrigger" type="button"
+                  role="combobox" aria-haspopup="listbox" aria-expanded="false"
+                  aria-controls="identityMenu" aria-labelledby="identityFieldLabel identityChoiceText">
+            <span id="identityChoiceText" class="identity-choice-text">Caricamento identità…</span>
+            <span class="identity-choice-symbol" aria-hidden="true">⌄</span>
+          </button>
+          <div class="identity-menu" id="identityMenu" role="listbox"
+               aria-label="Scegli il partecipante" hidden></div>
+        </div>
+        <button class="btn btn-outline" id="applyIdentity" type="button">Applica identità <span aria-hidden="true">↗</span></button>
+      </div>
+      <p id="identityDescription" class="quiet">Il profilo selezionato verrà applicato al Consumer della copia.</p>
+      <details class="technical identity-details">
+        <summary>Identificativo tecnico del partecipante</summary>
+        <code id="identityTechnicalId">—</code>
+      </details>
+    </section>
+
+    <section class="flow-section" id="discoverySection" aria-labelledby="s2">
+      <div class="section-head"><span class="section-number">02</span><div><h3 id="s2">Discovery del catalogo</h3><p>Interroga il Provider attraverso il Control Plane Consumer.</p></div></div>
+      <button type="button" id="discoverButton" class="btn btn-gold btn-discover"><span class="button-icon" aria-hidden="true">⌕</span><span><strong>Interroga il catalogo EDC</strong><small>Il Consumer richiede al Provider le offerte pubblicate</small></span><span class="btn-arrow" aria-hidden="true">↗</span></button>
+      <div class="metric-row"><div class="metric"><strong id="countDatasets">—</strong><span>Dataset scoperti</span></div><div class="metric"><strong id="countOffers">—</strong><span>Offerte ricevute</span></div></div>
+    </section>
+
+    <section class="flow-section" id="catalogSection" aria-labelledby="s3">
+      <div class="section-head"><span class="section-number">03</span><div><h3 id="s3">Dataset disponibili</h3><p>Le collezioni diventano selezionabili dopo la discovery.</p></div></div>
+      <div class="catalog-toolbar"><span id="catalogStatus">Catalogo non ancora interrogato</span><span id="catalogCounter"></span></div>
+      <div id="datasetGrid" class="dataset-grid" aria-live="polite"><div class="empty-state">Il catalogo apparirà qui dopo la richiesta al Provider.</div></div>
+    </section>
+
+    <section class="flow-section" id="offerSection" aria-labelledby="s4">
+      <div class="section-head"><span class="section-number">04</span><div><h3 id="s4">Offerta e condizioni d'accesso</h3><p>Esamina l'offerta prima di avviare la negoziazione.</p></div></div>
+      <div class="offer-panel">
+        <span class="eyebrow">DATASET SELEZIONATO</span>
+        <h4 id="selectedLabel">Nessun dataset selezionato</h4>
+        <div class="offer-meta"><span id="offerFormat">JSON</span><span id="offerNumber">—</span></div>
+        <div class="policy-box"><span class="eyebrow">POLICY CONTRATTUALE · SCENARIO A</span><p>Accesso consentito a un <strong>museo accreditato con progetto culturale autorizzato</strong>, oppure a una <strong>autorità pubblica con mandato valido di tutela</strong>.</p><div class="policy-rows"><span><b>R1 + R2</b><small>Museo e progetto autorizzato</small></span><i>oppure</i><span><b>R3</b><small>Mandato pubblico di tutela</small></span></div><p class="small-note">La decisione sull'accesso viene restituita dal Provider durante la negoziazione.</p></div>
+        <details class="technical" id="offerTechnical"><summary>Identificativo e dettagli dell'offerta</summary><code id="offerId">—</code></details>
+        <button type="button" id="negotiateButton" class="btn btn-gold full" disabled>Richiedi negoziazione contrattuale <span aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+
+    <section class="flow-section" id="accessSection" aria-labelledby="s5">
+      <div class="section-head"><span class="section-number">05</span><div><h3 id="s5">Esito e accesso ai dati</h3><p>Il catalogo è pubblico; il contenuto richiede un accordo.</p></div></div>
+      <div class="result-grid"><div class="result-tile denied" id="deniedTile"><span class="result-mark">×</span><strong>TERMINATED</strong><small>Accesso negato</small></div><div class="result-tile granted" id="grantedTile"><span class="result-mark">✓</span><strong>FINALIZED</strong><small>Accordo concluso</small></div></div>
+      <div class="result-message" id="resultMessage">La negoziazione non è ancora stata richiesta.</div>
+      <div class="final-flow"><div class="flow-node" id="flowTransfer">01 <span>Trasferimento</span></div><span class="flow-arrow">→</span><div class="flow-node" id="flowVerify">02 <span>Verifica JSON</span></div><span class="flow-arrow">→</span><div class="flow-node" id="flowGallery">03 <span>Galleria</span></div></div>
+      <button id="transferButton" type="button" class="btn btn-gold full" disabled>Richiedi trasferimento <span aria-hidden="true">↗</span></button>
+      <button id="verifyButton" type="button" class="btn btn-outline full" disabled>Verifica il JSON ricevuto <span aria-hidden="true">✓</span></button>
+      <a id="galleryButton" href="/gallery" class="btn btn-green full" hidden>Esplora le opere ricevute <span aria-hidden="true">↗</span></a>
+      <p class="quiet" id="transferInfo">Disponibile dopo un accordo autorizzato e un trasferimento verificato.</p>
+      <details class="technical trace" id="traceSection"><summary>Traccia delle operazioni EDC</summary><ol id="traceList"><li>In attesa della prima operazione.</li></ol><div class="evidence-meta" id="evidenceMeta"></div></details>
+      <button id="newRequest" type="button" class="btn btn-text">Inizia una nuova richiesta <span aria-hidden="true">↺</span></button>
+    </section>
+    <footer class="portal-footer"><span>Rijksmuseum Data Space · Progetto di tesi indipendente</span><span>Non affiliato al Rijksmuseum</span></footer>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

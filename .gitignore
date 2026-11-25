@@ -1,0 +1,76 @@
+.gradle-cache/
+**/build/
+edc/auth-service/keys/
+edc/auth-service/auth.env
+edc/provider/config.properties
+edc/consumer/config.properties
+data/rijksmuseum/
+data/received/
+evidence/
+__pycache__/
+.DS_Store
+
+# Dataset e risultati
+/data/
+/evidence/
+/backups/
+*.zip
+
+# Credenziali e configurazioni locali
+.env
+.env.*
+*.env
+auth.env
+config.properties
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+# Chiavi generate
+edc/auth-service/keys/
+
+# File compilati
+build/
+.gradle/
+.gradle-cache/
+*.jar
+!gradle-wrapper.jar
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Altri file generati
+node_modules/
+*.log
+*.db
+*.sqlite
+.DS_Store
+
+# Backup e file temporanei del portale
+.portale-backups/
+*.bak
+*.backup
+*.orig
+*.old
+
+# Segreti e stato locale del portale Provider
+ui_portale/.provider-readonly-secret
+ui_portale/.provider-offer-archives/
+
+# Backup del portale
+ui_portale/.portale-backups/
+
+# File locali di autenticazione e stato
+*.secret
+*.pid
+
+# Risorse grafiche in attesa di verifica dei diritti
+ui_portale/demo-ui/images/
+ui_portale/assets/hero-art.webp
+
+# Metadati ausiliari delle opere: distribuzione separata
+/ui_portale/demo-ui/autori_dipinti.json

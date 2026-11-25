@@ -1,0 +1,330 @@
+{
+  "title": "Registro locale di attestazioni simulate - Scenario A (prova EDC)",
+  "notice": "Attestazioni simulate, valide per i 14 asset dimostrativi. Ogni richiesta resta soggetta alle policy del singolo asset.",
+  "trusted_issuer": "test_credential_authority",
+  "registry": {
+    "museum_nl_01": [
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "accreditation-001",
+        "credential_type": "ExperimentalMuseumAccreditation",
+        "subject_id": "museum_nl_01",
+        "claims": {
+          "organization_type": "museum",
+          "country_code": "NL",
+          "accreditation_status": "active"
+        }
+      },
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "project-001",
+        "credential_type": "ExperimentalCulturalProjectAuthorization",
+        "subject_id": "museum_nl_01",
+        "claims": {
+          "project_id": "project-001",
+          "project_type": "digitalizzazione",
+          "project_status": "approved",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      }
+    ],
+    "university_it_01": [],
+    "heritage_authority_01": [
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "mandate-001",
+        "credential_type": "ExperimentalHeritageProtectionMandate",
+        "subject_id": "heritage_authority_01",
+        "claims": {
+          "organization_type": "public_authority",
+          "mandate_type": "cultural_heritage_protection",
+          "mandate_status": "active",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      }
+    ],
+    "museum_nl_02": [
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "accreditation-001",
+        "credential_type": "ExperimentalMuseumAccreditation",
+        "subject_id": "museum_nl_02",
+        "claims": {
+          "organization_type": "museum",
+          "country_code": "NL",
+          "accreditation_status": "active"
+        }
+      }
+    ],
+    "test_r1_r3_01": [
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r1_r3_01-r1",
+        "credential_type": "ExperimentalMuseumAccreditation",
+        "subject_id": "test_r1_r3_01",
+        "claims": {
+          "organization_type": "museum",
+          "country_code": "NL",
+          "accreditation_status": "active"
+        }
+      },
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r1_r3_01-r3",
+        "credential_type": "ExperimentalHeritageProtectionMandate",
+        "subject_id": "test_r1_r3_01",
+        "claims": {
+          "organization_type": "public_authority",
+          "mandate_type": "cultural_heritage_protection",
+          "mandate_status": "active",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      }
+    ],
+    "test_r2_r3_01": [
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r2_r3_01-r2",
+        "credential_type": "ExperimentalCulturalProjectAuthorization",
+        "subject_id": "test_r2_r3_01",
+        "claims": {
+          "project_id": "project-001",
+          "project_type": "digitalizzazione",
+          "project_status": "approved",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      },
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r2_r3_01-r3",
+        "credential_type": "ExperimentalHeritageProtectionMandate",
+        "subject_id": "test_r2_r3_01",
+        "claims": {
+          "organization_type": "public_authority",
+          "mandate_type": "cultural_heritage_protection",
+          "mandate_status": "active",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      }
+    ],
+    "test_r1_r2_r3_01": [
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r1_r2_r3_01-r1",
+        "credential_type": "ExperimentalMuseumAccreditation",
+        "subject_id": "test_r1_r2_r3_01",
+        "claims": {
+          "organization_type": "museum",
+          "country_code": "NL",
+          "accreditation_status": "active"
+        }
+      },
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r1_r2_r3_01-r2",
+        "credential_type": "ExperimentalCulturalProjectAuthorization",
+        "subject_id": "test_r1_r2_r3_01",
+        "claims": {
+          "project_id": "project-001",
+          "project_type": "digitalizzazione",
+          "project_status": "approved",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      },
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r1_r2_r3_01-r3",
+        "credential_type": "ExperimentalHeritageProtectionMandate",
+        "subject_id": "test_r1_r2_r3_01",
+        "claims": {
+          "organization_type": "public_authority",
+          "mandate_type": "cultural_heritage_protection",
+          "mandate_status": "active",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      }
+    ],
+    "test_r2_only_01": [
+      {
+        "issuer_id": "test_credential_authority",
+        "valid_from": "2026-01-01",
+        "valid_until": "2027-12-31",
+        "status": "active",
+        "revoked": false,
+        "credential_id": "scenario-a-test_r2_only_01-r2",
+        "credential_type": "ExperimentalCulturalProjectAuthorization",
+        "subject_id": "test_r2_only_01",
+        "claims": {
+          "project_id": "project-001",
+          "project_type": "digitalizzazione",
+          "project_status": "approved",
+          "asset_scope": [
+            "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+            "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+            "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+            "rijksmuseum-fotografie-10-opere-unificate",
+            "rijksmuseum-gioielli-accessori-10-opere-unificate",
+            "rijksmuseum-libri-documenti-10-opere-unificate",
+            "rijksmuseum-mobili-arredi-10-opere-unificate",
+            "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+            "rijksmuseum-monete-medaglie-10-opere-unificate",
+            "rijksmuseum-oggetti-vetro-10-opere-unificate",
+            "rijksmuseum-sculture-10-opere-unificate",
+            "rijksmuseum-stampe-10-opere-unificate",
+            "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+            "rijksmuseum-tessuti-abbigliamento-10-opere-unificate"
+          ]
+        }
+      }
+    ]
+  }
+}

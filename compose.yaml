@@ -1,0 +1,62 @@
+name: rijksmuseum-edc-interfaccia
+services:
+  provider:
+    image: eclipse-temurin:21-jre
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xmx512m"
+      TESI_SCENARIO_REGISTRY_PATH: /project/config/attestazioni.json
+      TESI_ASSET_REGISTRY_PATH: /project/config/edc-assets.properties
+    volumes:
+      - ./edc/control-plane/provider/build/libs/provider.jar:/app/provider.jar:ro
+      - ./edc/provider/config.properties:/config/config.properties:ro
+      - ./config/attestazioni.json:/project/config/attestazioni.json:ro
+      - ./config/edc-assets.properties:/project/config/edc-assets.properties:ro
+    command: ["java", "-Dedc.fs.config=/config/config.properties", "-jar", "/app/provider.jar"]
+    ports: ["127.0.0.1:45193:19193"]
+
+  consumer:
+    image: eclipse-temurin:21-jre
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xmx512m"
+    volumes:
+      - ./edc/control-plane/consumer/build/libs/consumer.jar:/app/consumer.jar:ro
+      - ./edc/consumer/config.properties:/config/config.properties:ro
+    command: ["java", "-Dedc.fs.config=/config/config.properties", "-jar", "/app/consumer.jar"]
+    ports: ["127.0.0.1:45293:29193"]
+
+  data-plane:
+    image: eclipse-temurin:21-jre
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xmx512m"
+      DATA_PLANE_RECEIVED_DIR: "/received"
+      RIJKSMUSEUM_DATA_DIR: "/data/rijksmuseum"
+    volumes:
+      - ./edc/data-plane/build/install/rijksmuseum-data-plane:/app:ro
+      - ./config/edc-assets.properties:/config/edc-assets.properties:ro
+      - ./data/rijksmuseum:/data/rijksmuseum:ro
+      - ./data/received:/received
+    command: ["/app/bin/rijksmuseum-data-plane"]
+
+  auth-service:
+    image: node:22-alpine
+    working_dir: /app
+    command: ["node", "/app/server.cjs"]
+    env_file: [./edc/auth-service/auth.env]
+    volumes:
+      - ./edc/auth-service/server.cjs:/app/server.cjs:ro
+      - ./edc/auth-service/keys:/keys:ro
+
+  # Non è un servizio sempre acceso: eseguirlo solo per bootstrap e richieste.
+  tools:
+    image: python:3.13-alpine
+    profiles: ["tools"]
+    working_dir: /project
+    environment:
+      EDC_PROVIDER_API_BASE: "http://provider:19193/management/v4"
+      EDC_CONSUMER_API_BASE: "http://consumer:29193/management/v4"
+      EDC_PROVIDER_DSP: "http://provider:19194/protocol/2025-1"
+      PYTHONUNBUFFERED: "1"
+    env_file: [./edc/auth-service/auth.env]
+    volumes:
+      - ./:/project
+    command: ["python", "scripts/bootstrap.py"]

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "asset_id": "rijksmuseum-armi-oggetti-militari-10-opere-unificate",
+      "filename": "rijksmuseum_armi_oggetti_militari_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 20492,
+      "sha256": "913e4b25c893ee182a49eadb8e94389b214063a295adc01735e1e4406e91e698"
+    },
+    {
+      "asset_id": "rijksmuseum-ceramiche-porcellane-10-opere-unificate",
+      "filename": "rijksmuseum_ceramiche_porcellane_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 19679,
+      "sha256": "6430a657167c7146bcdc4fd146e32c8dea2cf845ec10c304ff234900a9bae571"
+    },
+    {
+      "asset_id": "rijksmuseum-dipinti-e-pitture-10-opere-unificate",
+      "filename": "rijksmuseum_dipinti_e_pitture_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 20270,
+      "sha256": "9afd1a0d46951fd22b05176adc1bed24bed0cb684e5c3e5f58e15d4b7ccd2b11"
+    },
+    {
+      "asset_id": "rijksmuseum-fotografie-10-opere-unificate",
+      "filename": "rijksmuseum_fotografie_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 20805,
+      "sha256": "556fa75fd31c7248a3b6202c6f832987701e565fbe0b75b8bd52ee4cee6738b7"
+    },
+    {
+      "asset_id": "rijksmuseum-gioielli-accessori-10-opere-unificate",
+      "filename": "rijksmuseum_gioielli_accessori_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 21542,
+      "sha256": "43457dce59c8427b4d6423f602136f5cf7495c8c4dd9db2349a06570fdcf95b2"
+    },
+    {
+      "asset_id": "rijksmuseum-libri-documenti-10-opere-unificate",
+      "filename": "rijksmuseum_libri_documenti_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 23928,
+      "sha256": "34fb7434ad21425e2291871f697bdf740fa7bcd401519e8a4e07d16d60196ea5"
+    },
+    {
+      "asset_id": "rijksmuseum-mobili-arredi-10-opere-unificate",
+      "filename": "rijksmuseum_mobili_arredi_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 22617,
+      "sha256": "b23bda383e2fbdcc600dd46b78b8146df914e1f8e03403aa0ff87079f1548bbc"
+    },
+    {
+      "asset_id": "rijksmuseum-modelli-manufatti-tecnici-10-opere-unificate",
+      "filename": "rijksmuseum_modelli_manufatti_tecnici_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 20284,
+      "sha256": "e4f8cf7d2845624167f7e39e44a96cdff9af40f8b1c206c19d939a2fa7bf9a27"
+    },
+    {
+      "asset_id": "rijksmuseum-monete-medaglie-10-opere-unificate",
+      "filename": "rijksmuseum_monete_medaglie_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 23385,
+      "sha256": "4bcf92da23ae54c1f854d52479dd68a8200552ea9ed7cbb0830f50818b2223ef"
+    },
+    {
+      "asset_id": "rijksmuseum-oggetti-vetro-10-opere-unificate",
+      "filename": "rijksmuseum_oggetti_vetro_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 21360,
+      "sha256": "e1f5dd46bb9ff40874bcaac333bc0e53c4814c199d190d4dcf05f3563cffd86a"
+    },
+    {
+      "asset_id": "rijksmuseum-sculture-10-opere-unificate",
+      "filename": "rijksmuseum_sculture_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 21475,
+      "sha256": "6b1e7cd25bb7cdaabe578155b5a02a61488dc2ca719c556ee0cd8aa55cae50ae"
+    },
+    {
+      "asset_id": "rijksmuseum-stampe-10-opere-unificate",
+      "filename": "rijksmuseum_stampe_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 20722,
+      "sha256": "7d5d57f182bc46d71d4ecb0b5e18c22f49fc9d6813408e1c0418fa6d4a4667c5"
+    },
+    {
+      "asset_id": "rijksmuseum-strumenti-scientifici-musicali-10-opere-unificate",
+      "filename": "rijksmuseum_strumenti_scientifici_musicali_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 22043,
+      "sha256": "5146e74018ce1596eaea69ead9282a0ddc537d8fd6d2543a5ba04f36569184dd"
+    },
+    {
+      "asset_id": "rijksmuseum-tessuti-abbigliamento-10-opere-unificate",
+      "filename": "rijksmuseum_tessuti_abbigliamento_10_opere_unificate.json",
+      "media_type": "application/json",
+      "size_bytes": 21054,
+      "sha256": "09ca3a59f04fc653073488f4877c2528ec5900318cdce6c150c9634a11b20b56"
+    }
+  ]
+}

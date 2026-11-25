@@ -1,0 +1,10 @@
+Rijksmuseum Data Space — portale Discovery
+
+Provenienza grafica:
+- Immagine della statua: scripts/demo_ui_assets/hero-art.webp dell'archivio della demo fornito dall'utente. È un'illustrazione decorativa, non una fotografia accertata di una specifica opera Rijksmuseum.
+- Foglio di stile storico delle schermate 2/3: scripts/demo_ui_assets/style.css della demo; copiato senza modifiche.
+- Renderer delle schermate 2/3: funzioni estratte da scripts/demo_museale.py della demo, già isolate e verificate nel pacchetto precedente.
+- Foto delle opere: risorse demo-ui/images recuperate dall'archivio utente.
+- Nuova prima interfaccia: index.html, app.js, portal.css, server.py.
+
+Nessun componente EDC, dataset sorgente o credenziale incluso nel pacchetto.
