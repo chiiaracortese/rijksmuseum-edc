@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rijksmuseum — Contratto di 25 campi",
+  "description": "Schema JSON Draft 2020-12 per i 25 campi normalizzati. Controlla struttura e tipi, non il contenuto storico-artistico o le relazioni RDF. Date storiche verificate sintatticamente dal formato personalizzato.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "object_uri",
+      "inventory_numbers",
+      "titles",
+      "descriptions",
+      "dimensions",
+      "credit_line",
+      "object_types",
+      "support",
+      "materials",
+      "creators",
+      "production_places",
+      "current_locations",
+      "production_dates",
+      "visual_item_uris",
+      "sets",
+      "equivalent_uris",
+      "alternative_titles",
+      "object_description",
+      "technical_description",
+      "additional_dimensions",
+      "inscriptions",
+      "provenance",
+      "related_object_notes",
+      "production_techniques",
+      "production_date_summary"
+    ],
+    "properties": {
+      "object_uri": {
+        "type": "string",
+        "minLength": 1,
+        "format": "uri",
+        "pattern": "^https?://"
+      },
+      "inventory_numbers": {
+        "type": "string"
+      },
+      "titles": {
+        "type": "string"
+      },
+      "descriptions": {
+        "type": "string"
+      },
+      "dimensions": {
+        "type": "string"
+      },
+      "credit_line": {
+        "type": "string"
+      },
+      "object_types": {
+        "type": "string"
+      },
+      "support": {
+        "type": "string"
+      },
+      "materials": {
+        "type": "string"
+      },
+      "creators": {
+        "type": "string"
+      },
+      "production_places": {
+        "type": "string"
+      },
+      "current_locations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "production_dates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "earliest_start": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/historical_date_time"
+              }
+            },
+            "latest_end": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/historical_date_time"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "description": "Intervalli cronologici come forniti dalla fonte: può essere presente solo uno dei due estremi. È richiesto almeno un estremo con almeno una data; nessuna data viene inferita.",
+          "anyOf": [
+            {
+              "required": [
+                "earliest_start"
+              ],
+              "properties": {
+                "earliest_start": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "required": [
+                "latest_end"
+              ],
+              "properties": {
+                "latest_end": {
+                  "minItems": 1
+                }
+              }
+            }
+          ]
+        }
+      },
+      "visual_item_uris": {
+        "type": "string"
+      },
+      "sets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "uri"
+          ],
+          "properties": {
+            "uri": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "equivalent_uris": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "alternative_titles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "object_description": {
+        "type": "string"
+      },
+      "technical_description": {
+        "type": "string"
+      },
+      "additional_dimensions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "inscriptions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "provenance": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "related_object_notes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "production_techniques": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Etichette della colonna CSV production_techniques, senza riclassificazione lessicale; non implicano che ogni valore sia una tecnica in senso linguistico."
+      },
+      "production_date_summary": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  },
+  "$defs": {
+    "historical_date_time": {
+      "type": "string",
+      "format": "historical-date-time",
+      "description": "Data/ora con anno eventualmente negativo, come nei JSON Rijksmuseum; controllo sintattico tramite format checker personalizzato."
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "project": "Tesi Data Space Rijksmuseum",
+  "phase": "Fase 8 - Derivazione requisiti d’uso",
+  "scenario_id": "A",
+  "title": "Cooperazione fra musei e autorita pubbliche di tutela",
+  "nature": "Regole ipotetiche di accesso al servizio sperimentale, non licenze del Rijksmuseum",
+  "target": "I 14 dataset JSON normalizzati che saranno pubblicati dal Provider locale; primo test su Dipinti e pitture, estensione alle altre 13 macrocategorie. File LLM fuori da questo ambito salvo decisione esplicita.",
+  "access_expression": "(R1 AND R2) OR R3",
+  "prerequisites": {
+    "identity_binding": "credential.subject_id == authenticated_consumer_id",
+    "issuer_trust": "for_each_relevant_credential: issuer accepted_for_credential_type by experimental trust configuration; number and identities of issuers deferred to EDC implementation",
+    "time_valid": "valid_from <= evaluation_time < valid_until",
+    "status_valid": "status == active; revoked/expired/unknown => not valid",
+    "scope_valid": "requested_asset_id in credential.asset_scope where required",
+    "decision_default": "deny_if_no_path_has_all_required_valid_verified_evidence"
+  },
+  "requirements": [
+    {
+      "id": "R1",
+      "title": "Museo olandese accreditato",
+      "type": "pre_access_eligibility",
+      "credential_type": "ExperimentalMuseumAccreditation",
+      "claims": {
+        "organization_type": "museum",
+        "country_code": "NL",
+        "accreditation_status": "active"
+      },
+      "evaluation": "All specified claims match; subject, issuer, time, status valid. A generic nationality self-assertion does not satisfy this requirement.",
+      "evidence": "Attestazione istituzionale simulata in registro locale controllato",
+      "issuer_requirement": "Fonte attendibile per questa attestazione; configurazione concreta e numero emittenti rinviati a implementazione EDC"
+    },
+    {
+      "id": "R2",
+      "title": "Progetto culturale autorizzato",
+      "type": "pre_access_project_authorization",
+      "credential_type": "ExperimentalCulturalProjectAuthorization",
+      "claims": {
+        "approval_status": "approved",
+        "project_type_allowed": [
+          "catalogazione",
+          "digitalizzazione",
+          "conservazione"
+        ],
+        "project_id": "nonempty",
+        "asset_scope": "includes requested_asset_id"
+      },
+      "evaluation": "The authorized organization matches the authenticated Consumer; approval active, project type allowed, requested asset in scope, temporal and issuer checks pass.",
+      "evidence": "Autorizzazione progettuale simulata; da legare allo stesso soggetto di R1",
+      "issuer_requirement": "Fonte attendibile per questa attestazione; configurazione concreta e numero emittenti rinviati a implementazione EDC"
+    },
+    {
+      "id": "R3",
+      "title": "Autorita pubblica con mandato di tutela",
+      "type": "pre_access_alternative",
+      "credential_type": "ExperimentalHeritageProtectionMandate",
+      "claims": {
+        "organization_type": "public_authority",
+        "mandate_type": "cultural_heritage_protection",
+        "mandate_status": "active",
+        "asset_scope": "includes requested_asset_id"
+      },
+      "evaluation": "The public authority mandate applies to the authenticated Consumer and requested asset, is active and temporally valid; no R1 or R2 required.",
+      "evidence": "Mandato pubblico simulato rilasciato da ente emittente sperimentale autorizzato",
+      "issuer_requirement": "Fonte attendibile per questa attestazione; configurazione concreta e numero emittenti rinviati a implementazione EDC"
+    }
+  ],
+  "decisions": {
+    "allow": "(valid(R1) AND valid(R2)) OR valid(R3); valid() includes identity binding, issuer trust, temporal validity, non-revocation and applicable asset scope",
+    "deny": "no valid access path"
+  },
+  "not_in_scope": "No actual Rijksmuseum restrictions, no claimed real accreditations, no post-transfer technical enforcement, no actual verifiable credentials yet",
+  "later_stages": {
+    "9": "Traduzione delle condizioni in ODRL e definizione punti di valutazione EDC",
+    "edc_implementation": "Scelta emittenti e IAM; identità e attestazioni simulate; trust registry, valutazione ed enforcement",
+    "tests": "Negoziazioni e trasferimenti positivi e negativi, incluso rifiuto in caso di attestazioni mancanti/scadute"
+  }
+}

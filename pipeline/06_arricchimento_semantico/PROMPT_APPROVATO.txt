@@ -1,0 +1,571 @@
+FASE 6 — Arricchimento semantico descrittivo dei dati Rijksmuseum mediante LLM
+
+1. Contesto del progetto
+
+Sto sviluppando una pipeline per la preparazione di dataset museali del Rijksmuseum destinati alla condivisione in un Data Space.
+
+Ho già prodotto 14 macrocategorie di oggetti museali in formato JSON, utilizzando uno schema comune di 25 campi. I dataset sono stati normalizzati, sottoposti a Data Profiling e validati tecnicamente. È stata inoltre approvata una mappatura semantica descrittiva dei 25 campi rispetto a Linked Art.
+
+Ora devo realizzare una fase sperimentale di arricchimento semantico descrittivo assistito da LLM, attraverso il recupero di informazioni testuali dal sito ufficiale del Rijksmuseum.
+
+Ti allego il JSON di una macrocategoria. Il procedimento deve essere riutilizzabile per tutte le 14 macrocategorie, indipendentemente dalla tipologia degli oggetti contenuti.
+
+2. Obiettivo
+
+Selezionare fino a 10 oggetti museali dal JSON allegato, per i quali siano disponibili informazioni descrittive sufficienti sul sito ufficiale del Rijksmuseum, e produrre per ciascuno una descrizione narrativa dettagliata in inglese.
+
+Obiettivo principale della descrizione
+
+La descrizione deve permettere a un lettore di immaginare visivamente l'opera o l'oggetto museale senza dover necessariamente consultare la pagina originale.
+
+Non voglio una semplice sintesi delle informazioni tecniche, storiche o artistiche.
+
+Voglio una descrizione che privilegi:
+
+Che cosa rappresenta l'opera o che cosa mostra l'oggetto.
+
+Quali elementi sono presenti e riconoscibili.
+
+Come sono raffigurati o organizzati.
+
+Quali azioni, gesti, posture o relazioni sono documentati.
+
+Come si presenta visivamente la composizione.
+
+Quali colori, forme, materiali, decorazioni o effetti visivi sono descritti nella fonte.
+
+L'LLM deve riorganizzare le informazioni ufficiali in una descrizione visiva chiara, completa e scorrevole.
+
+La descrizione deve essere interpretativa nel senso di spiegare ciò che l'opera rappresenta, non nel senso di introdurre interpretazioni personali o elementi non documentati.
+
+3. Selezione degli oggetti
+
+Analizza il JSON allegato e identifica automaticamente la macrocategoria.
+
+Seleziona gli oggetti seguendo questi criteri:
+
+Dai priorità agli oggetti per i quali object_description è vuoto, assente o poco informativo.
+
+Privilegia oggetti per i quali il Rijksmuseum mette a disposizione informazioni testuali sufficientemente dettagliate da permettere una descrizione visiva.
+
+Utilizza object_uri come identificatore principale, integrandolo con inventory_numbers, titles e creators per verificare la corrispondenza con la pagina ufficiale.
+
+Non selezionare più di 10 oggetti per l'arricchimento finale.
+
+Non fermarti ai primi 10 candidati: esamina progressivamente altri oggetti finché non trovi 10 candidati idonei.
+
+Se una fonte è insufficiente, non accessibile o non verificabile, escludi il candidato e cercane un altro.
+
+Non includere oggetti soltanto per raggiungere il numero di 10.
+
+Se, dopo una ricerca ragionevolmente approfondita, non trovi 10 oggetti idonei, produci un numero inferiore di arricchimenti.
+
+Privilegia oggetti per i quali sia possibile descrivere aspetti visivi concreti, anziché soltanto informazioni storiche o tecniche.
+
+Registra i criteri di selezione e gli eventuali motivi di esclusione.
+
+Il campione è sperimentale e non deve essere presentato automaticamente come rappresentativo dell'intera macrocategoria.
+
+Distinzione fondamentale
+
+Un valore vuoto di object_description nel JSON originale non costituisce un criterio di esclusione.
+
+Al contrario, rappresenta una delle motivazioni dell'arricchimento.
+
+L'oggetto è idoneo se la sua pagina ufficiale contiene informazioni testuali sufficienti per produrre una nuova descrizione narrativa documentata.
+
+4. Recupero delle informazioni dal web
+
+Per ogni candidato:
+
+Parti da object_uri.
+
+Utilizza gli strumenti di navigazione web disponibili per individuare la pagina ufficiale dell'oggetto sul dominio rijksmuseum.nl.
+
+Se necessario, cerca l'opera tramite titolo, autore e numero d'inventario.
+
+Apri e consulta effettivamente la pagina ufficiale.
+
+Verifica la corrispondenza tra la scheda e l'oggetto del JSON.
+
+Recupera le descrizioni testuali ufficiali disponibili.
+
+Valuta se contengono informazioni sufficienti per una descrizione visiva dettagliata.
+
+Registra l'URL effettivamente consultato e la lingua delle informazioni utilizzate.
+
+Verifica obbligatoria
+
+Una fonte può essere considerata verificata soltanto se:
+
+La pagina è stata effettivamente aperta e consultata.
+
+Appartiene al sito ufficiale del Rijksmuseum.
+
+La corrispondenza con l'oggetto originale è stata controllata.
+
+Contiene informazioni testuali pertinenti e utilizzabili per la descrizione.
+
+Non è sufficiente conoscere il titolo dell'opera o individuare un possibile URL.
+
+Fonti ammesse
+
+Utilizza esclusivamente informazioni pubblicate nelle pagine ufficiali del Rijksmuseum.
+
+Non utilizzare Wikipedia, blog, siti commerciali, cataloghi di altri musei o conoscenze generali dell'LLM per integrare le descrizioni.
+
+Il JSON originale può essere utilizzato per identificare l'oggetto e controllare la corrispondenza delle informazioni, ma non deve essere l'unica fonte dell'arricchimento.
+
+Se non puoi verificare la pagina o non hai accesso funzionante al web, non generare una descrizione sostitutiva basata sulla conoscenza generale del modello.
+
+Non interpretare l'impossibilità di accedere a una fonte come prova che l'opera non possieda documentazione.
+
+5. Gestione della lingua
+
+La descrizione finale deve essere sempre in inglese.
+
+Applica queste regole:
+
+Se la pagina ufficiale contiene una descrizione inglese, utilizzala come fonte principale.
+
+Se è disponibile soltanto una descrizione olandese, traducila semanticamente in inglese.
+
+Se sono disponibili informazioni complementari in inglese e olandese, puoi integrarle senza modificarne il significato.
+
+Mantieni tutti i dettagli significativi, soprattutto quelli relativi agli aspetti visivi.
+
+Non aggiungere informazioni durante la traduzione.
+
+Registra la lingua effettivamente utilizzata: en, nl oppure ["en", "nl"].
+
+La traduzione dall'olandese all'inglese costituisce una componente esplicita dell'arricchimento tramite LLM.
+
+6. Regole per la generazione della descrizione arricchita
+
+6.1 Priorità assoluta: descrivere ciò che l'oggetto rappresenta
+
+La descrizione deve concentrarsi principalmente sul soggetto e sugli elementi visivi documentati.
+
+Per un dipinto figurativo, per esempio, descrivi le persone, gli oggetti, le azioni, la loro disposizione e le caratteristiche della scena.
+
+Per un oggetto decorativo, descrivi forma, struttura, materiali, decorazioni e parti riconoscibili.
+
+Per una fotografia, descrivi il soggetto raffigurato, l'ambiente, la composizione e gli eventuali particolari documentati.
+
+Per una moneta, descrivi le figure, i simboli, le iscrizioni e gli elementi presenti sulle superfici.
+
+Per una stampa, descrivi il soggetto, le figure, gli elementi grafici e l'organizzazione della rappresentazione.
+
+Per una scultura, descrivi la figura o il soggetto rappresentato, la posa, gli attributi, le forme e i dettagli plastici documentati.
+
+Per opere astratte o non figurative, descrivi le forme, i rapporti spaziali, i colori, i materiali e gli effetti visivi effettivamente documentati.
+
+Adatta automaticamente il contenuto alla macrocategoria. Non utilizzare uno schema descrittivo pensato esclusivamente per i dipinti.
+
+6.2 Organizzazione del testo
+
+Quando le informazioni lo consentono, costruisci la descrizione secondo questa progressione:
+
+Primo momento — Soggetto principale
+
+Inizia spiegando direttamente ciò che l'opera o l'oggetto rappresenta.
+
+Evita introduzioni generiche sull'artista, sul movimento artistico o sull'importanza storica dell'opera.
+
+Secondo momento — Elementi e dettagli
+
+Descrivi le figure, gli oggetti, le forme, le posture, le azioni, le decorazioni e gli altri dettagli effettivamente documentati.
+
+Terzo momento — Composizione e caratteristiche visive
+
+Spiega come sono organizzati gli elementi, quando la fonte fornisce queste informazioni.
+
+Puoi descrivere rapporti spaziali, illuminazione, colori, contrasti e altri aspetti visivi documentati.
+
+Quarto momento — Comprensione complessiva
+
+Concludi con una breve frase che permetta di comprendere la scena o l'aspetto generale dell'oggetto.
+
+Non aggiungere interpretazioni soggettive o conclusioni che non siano supportate dalle informazioni ufficiali.
+
+Questa progressione è una guida e non una struttura rigida: adattala alla natura dell'oggetto e ai dettagli disponibili.
+
+6.3 Lunghezza
+
+La descrizione deve contenere preferibilmente da 100 a 150 parole in inglese, quando le informazioni disponibili sono sufficienti.
+
+Regole:
+
+Cerca di rimanere nel range 100–150 parole.
+
+Non allungare artificialmente il testo.
+
+Non ripetere le stesse informazioni con formulazioni differenti.
+
+Se la fonte documenta meno dettagli, produci una descrizione più breve.
+
+Se la scarsità di informazioni impedisce una descrizione realmente utile, escludi l'oggetto e seleziona un altro candidato.
+
+Non sacrificare la fedeltà alla fonte per rispettare il numero di parole.
+
+6.4 Stile linguistico
+
+Utilizza:
+
+Inglese naturale, chiaro e grammaticalmente corretto.
+
+Frasi descrittive dirette.
+
+Terminologia accessibile anche a un pubblico non specializzato.
+
+Un'organizzazione del testo che accompagni il lettore nell'osservazione ideale dell'oggetto.
+
+Paragrafi brevi quando migliorano la leggibilità.
+
+Evita:
+
+Introduzioni generiche o ripetitive.
+
+Lunghe spiegazioni storico-artistiche non necessarie.
+
+Descrizioni concentrate prevalentemente sulla tecnica.
+
+Formulazioni astratte che non aiutano a comprendere l'aspetto dell'opera.
+
+Valutazioni estetiche soggettive.
+
+Ripetizioni utilizzate soltanto per aumentare la lunghezza.
+
+Elenchi tecnici al posto di una descrizione narrativa.
+
+6.5 Ruolo del contesto storico, della tecnica e dell'interpretazione
+
+Le informazioni storiche, artistiche e tecniche sono ammesse quando contribuiscono direttamente a comprendere il soggetto o l'aspetto dell'opera.
+
+Per esempio:
+
+Un riferimento mitologico può spiegare chi siano le figure rappresentate.
+
+Un riferimento religioso può chiarire il significato di un episodio raffigurato.
+
+Una tecnica pittorica può spiegare un particolare effetto visivo.
+
+Un materiale può spiegare la struttura o l'apparenza dell'oggetto.
+
+Tuttavia, queste informazioni devono rimanere subordinate alla descrizione dell'opera.
+
+Non trasformare il testo in una biografia dell'artista, un approfondimento storico o un commento critico generale.
+
+Quando il museo propone interpretazioni alternative o incerte, conserva esplicitamente tale incertezza.
+
+6.6 Vincolo fondamentale: nessuna informazione inventata
+
+Non inventare alcun elemento visivo.
+
+Non attribuire all'oggetto colori, figure, gesti, abiti, oggetti raffigurati, forme, composizioni, simbolismi o significati non documentati nella fonte.
+
+Non trasformare una descrizione tecnica in una ricostruzione immaginaria.
+
+Non completare le lacune delle fonti utilizzando ciò che normalmente ci si aspetterebbe di vedere in opere simili.
+
+Non utilizzare l'immagine dell'opera come base per osservazioni visive autonome: il metodo sperimentale scelto si basa sul recupero e sulla rielaborazione delle descrizioni testuali ufficiali.
+
+Se un elemento è descritto dal Rijksmuseum, puoi utilizzarlo.
+
+Se non è documentato, non devi introdurlo.
+
+Il testo deve essere visivamente ricco, ma sempre documentato.
+
+6.7 Esempio dello stile desiderato
+
+Il seguente testo rappresenta esclusivamente un riferimento di stile. Non considerare automaticamente verificati tutti i dettagli contenuti nell'esempio: ciascuna affermazione deve essere supportata dalla fonte ufficiale prima di poter essere utilizzata.
+
+Orazio Borgianni's Christ Among the Doctors depicts a young Jesus surrounded by a group of older, bearded men engaged in an animated discussion around an open book.
+
+Jesus stands among the scholars, wearing a reddish garment. He gestures toward the open book while placing his other hand near his chest.
+
+The surrounding men wear richly colored robes and various head coverings. Some lean toward Jesus, others look at the book, and several gesture with their hands as though debating or explaining something.
+
+The figures are positioned very close together, filling most of the canvas. Their faces and hands are strongly illuminated, while the background remains dark and largely indistinct.
+
+Visually, the painting shows a crowded, animated gathering of religious scholars discussing a text with a young boy at its center.
+
+Imita il livello di concretezza, l'ordine descrittivo e la centralità degli elementi visivi, non i contenuti specifici dell'esempio.
+
+Non utilizzare questo esempio come modello rigido per ogni oggetto: adattalo alla macrocategoria e alle informazioni documentate.
+
+7. Verifica della fedeltà alla fonte e controllo di qualità
+
+Prima di accettare ogni descrizione:
+
+Confrontala con le informazioni effettivamente recuperate dalla pagina ufficiale.
+
+Verifica che ogni affermazione visiva sia documentata.
+
+Controlla soggetto, titolo, autore, numero d'inventario e URI.
+
+Verifica che l'eventuale traduzione dall'olandese sia fedele.
+
+Elimina informazioni speculative, non supportate o inventate.
+
+Verifica che il testo descriva concretamente l'opera e non sia principalmente un approfondimento storico o tecnico.
+
+Controlla che la descrizione rientri preferibilmente nel range 100–150 parole.
+
+Controlla che l'URL dichiarato sia quello realmente consultato.
+
+Registra almeno due evidenze documentali significative, quando effettivamente disponibili.
+
+Assicurati che la descrizione finale sia una rielaborazione originale, evitando lunghe riproduzioni letterali della fonte.
+
+Controllo di completezza
+
+Ogni record del JSON finale deve contenere:
+
+object_uri
+
+inventory_numbers
+
+titles
+
+enriched_description
+
+source.organization
+
+source.url
+
+source.language
+
+generation_method
+
+source_evidence_summary
+
+review_status
+
+Non inserire valori vuoti, null, testi segnaposto o URL non verificati.
+
+Conserva gli identificatori esattamente come compaiono nel JSON originale.
+
+Se un oggetto non permette di compilare correttamente tutti i campi previsti, escludilo e cerca un altro candidato.
+
+Non dichiarare approvate le descrizioni: la revisione umana finale sarà effettuata successivamente.
+
+8. Formato dell'output
+
+Non modificare il JSON originale della macrocategoria.
+
+Crea un nuovo file JSON contenente al massimo 10 arricchimenti, collegati ai rispettivi oggetti mediante object_uri.
+
+Il file deve contenere esclusivamente oggetti per i quali sono state verificate le fonti.
+
+Utilizza esattamente questa struttura:
+
+{
+
+  "object_uri": "URI originale",
+
+  "inventory_numbers": "numero di inventario",
+
+  "titles": "titolo originale",
+
+  "enriched_description": "Descrizione visiva dettagliata in inglese",
+
+  "source": {
+
+    "organization": "Rijksmuseum",
+
+    "url": "URL ufficiale verificato",
+
+    "language": "en"
+
+  },
+
+  "generation_method": "llm_enrichment_from_official_text",
+
+  "source_evidence_summary": [
+
+    "Prima informazione documentale verificata",
+
+    "Seconda informazione documentale verificata"
+
+  ],
+
+  "review_status": "pending_human_review"
+
+}
+
+Se sono state utilizzate entrambe le lingue, source.language deve contenere ["en", "nl"].
+
+Le evidenze devono essere brevi e parafrasate, non lunghe citazioni testuali.
+
+Non aggiungere altri campi al record.
+
+Validazione del file
+
+Prima della consegna:
+
+Verifica che il JSON sia sintatticamente valido.
+
+Verifica che contenga al massimo 10 record.
+
+Verifica l'assenza di duplicati di object_uri.
+
+Controlla che ogni oggetto appartenga al JSON originale.
+
+Verifica che ogni URL ufficiale sia stato effettivamente consultato.
+
+Controlla che ogni descrizione sia documentata.
+
+Controlla la completezza di tutti i campi obbligatori.
+
+Verifica che tutte le descrizioni siano in inglese.
+
+Calcola il numero di parole di ogni descrizione e segnala gli eventuali testi fuori dall'intervallo indicativo.
+
+Verifica che review_status sia impostato a pending_human_review.
+
+Controlla che il file sia stato realmente creato e sia disponibile per il download.
+
+Non inserire nel JSON finale candidati esclusi o non verificati.
+
+9. Output richiesti
+
+A. File JSON esportabile
+
+Nome:
+
+arricchimento_semantico_<macrocategoria>.json
+
+Il file deve contenere soltanto gli arricchimenti prodotti, non tutti gli oggetti della macrocategoria.
+
+Fornisci un collegamento funzionante per scaricarlo.
+
+B. Tabella riepilogativa
+
+Per ogni oggetto arricchito indica:
+
+URI originale.
+
+Numero d'inventario.
+
+Titolo.
+
+Lingua della fonte utilizzata.
+
+URL ufficiale consultato.
+
+Numero di parole della descrizione.
+
+Breve valutazione della completezza delle informazioni.
+
+Stato della revisione.
+
+La tabella deve contenere soltanto gli oggetti presenti nel JSON finale.
+
+C. Report del processo
+
+Specifica:
+
+Macrocategoria elaborata.
+
+Numero totale degli oggetti nel JSON originale.
+
+Numero dei candidati effettivamente esaminati.
+
+Numero dei candidati esclusi.
+
+Numero degli oggetti arricchiti.
+
+Criteri di selezione.
+
+Numero di descrizioni derivate da fonti inglesi.
+
+Numero di descrizioni derivate da fonti olandesi.
+
+Numero di descrizioni basate su entrambe le lingue.
+
+Eventuali esclusioni e motivazioni.
+
+Lunghezza minima, massima e media delle descrizioni prodotte.
+
+Eventuali difficoltà nel reperimento delle fonti.
+
+Risultato dei controlli di completezza e validazione.
+
+Distingui chiaramente i candidati esaminati dagli oggetti effettivamente arricchiti.
+
+Non inventare il numero dei candidati esaminati o esclusi.
+
+D. Sintesi conclusiva
+
+Indica:
+
+Se sono stati ottenuti 10 arricchimenti.
+
+Se tutte le fonti sono ufficiali e verificate.
+
+Se le descrizioni sono state prodotte esclusivamente sulla base delle informazioni testuali ufficiali.
+
+Se il JSON è completo e strutturalmente valido.
+
+Se le descrizioni rispettano il nuovo criterio di centralità del soggetto e degli elementi visivi.
+
+Se tutti gli arricchimenti sono ancora in attesa di revisione umana.
+
+10. Procedura operativa
+
+Esegui il lavoro soltanto sulla macrocategoria allegata.
+
+Segui questo ordine:
+
+Fase 1 — Analisi del dataset
+
+Identifica la macrocategoria, esamina i campi e individua i candidati con descrizioni insufficienti.
+
+Fase 2 — Ricerca e verifica delle fonti
+
+Parti dagli URI, consulta le schede ufficiali e verifica le informazioni descrittive effettivamente disponibili.
+
+Fase 3 — Selezione degli oggetti idonei
+
+Seleziona fino a 10 oggetti con fonti ufficiali verificate e informazioni sufficienti per una descrizione visiva dettagliata.
+
+Fase 4 — Arricchimento mediante LLM
+
+Recupera, comprendi, traduci quando necessario e riorganizza le informazioni ufficiali.
+
+Produci descrizioni inglesi focalizzate sul soggetto, sugli elementi rappresentati e sulle caratteristiche visive documentate.
+
+Fase 5 — Controllo della qualità
+
+Confronta ogni descrizione con la fonte, verifica l'assenza di invenzioni e controlla la lunghezza preferenziale di 100–150 parole.
+
+Fase 6 — Produzione degli output
+
+Genera il JSON esportabile, la tabella riepilogativa e il report del processo.
+
+Vincoli conclusivi
+
+Non modificare i 14 JSON originali.
+
+Non aggiungere campi allo schema museale a 25 campi.
+
+Non inventare informazioni visive o interpretazioni.
+
+Non utilizzare fonti esterne al Rijksmuseum.
+
+Non produrre descrizioni basate esclusivamente sui dati tecnici del JSON.
+
+Non aggiungere nuove relazioni RDF.
+
+Non includere record incompleti o non verificati.
+
+Non privilegiare le informazioni storiche rispetto a quelle visive.
+
+Non allungare artificialmente i testi per raggiungere 100 parole.
+
+Non considerare il numero di 10 oggetti più importante dell'affidabilità della fonte.
+
+Mantieni gli arricchimenti in attesa di revisione umana.
+
+Procedi direttamente con l'analisi del JSON allegato, la ricerca delle fonti ufficiali e la generazione degli arricchimenti per la macrocategoria. Produci fino a 10 descrizioni visive dettagliate in inglese, preferibilmente di 100–150 parole ciascuna, basate esclusivamente su informazioni documentate dal Rijksmuseum.

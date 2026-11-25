@@ -1,0 +1,23 @@
+{
+  "version": "schema-25",
+  "description": "Controlli formali non distruttivi (URI HTTP(S), pattern identificatori, duplicati, ordine degli anni). Non valuta il significato lessicale dei concetti di produzione.",
+  "iri_fields": [
+    "object_uri",
+    "visual_item_uris",
+    "sets[].uri",
+    "equivalent_uris[]"
+  ],
+  "regex_rules": [
+    {
+      "field": "object_uri",
+      "regex": "https://id\\.rijksmuseum\\.nl/[0-9]+",
+      "id": "object_uri_rijksmuseum"
+    },
+    {
+      "field": "visual_item_uris",
+      "regex": "https://id\\.rijksmuseum\\.nl/[0-9]+",
+      "id": "visual_item_uri_rijksmuseum"
+    }
+  ],
+  "max_examples_per_rule": 12
+}
