@@ -393,3 +393,7 @@ La scelta della licenza del software e le condizioni di redistribuzione delle ri
 ---
 
 **Contesto:** progetto sperimentale di tesi relativo a interoperabilità, patrimonio culturale, Data Spaces ed Eclipse EDC.
+
+## Guida operativa
+
+Per configurare le identità Consumer, consultare il catalogo, negoziare le condizioni d'uso, trasferire i dataset e gestire la revoca e la ripubblicazione delle offerte, consultare la [Guida operativa Provider e Consumer](docs/GUIDA_OPERATIVA.md).
