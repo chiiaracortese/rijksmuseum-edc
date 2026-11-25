@@ -1,0 +1,2 @@
+# Dipendenza per leggere i piccoli file N-Triples sintetici della Fase 01.
+rdflib>=7,<8
