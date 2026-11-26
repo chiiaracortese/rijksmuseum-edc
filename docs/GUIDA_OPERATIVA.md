@@ -128,6 +128,42 @@ Aprire `http://127.0.0.1:45300` nel browser locale.
 
 La schermata **Provider** presenta lo stato degli asset, delle policy, delle offerte e dei processi. Comprende operazioni amministrative di revoca/ripubblicazione delle Contract Definition soggette ai controlli applicativi e alle conferme previste. La revoca impedisce nuove richieste basate sull'offerta ritirata; non cancella retroattivamente file già ricevuti o accordi precedentemente conclusi. Eseguire tali operazioni solo nell'ambiente locale controllato.
 
+### Prima configurazione della password Provider
+
+L'accesso amministrativo **Provider** richiede una password **locale**, definita dall'utente che installa il progetto. La password dell'autrice non è inclusa nella repository e non deve essere richiesta né condivisa. Il server legge il file `ui_portale/.provider-readonly-secret` e, su macOS/Linux, lo accetta soltanto se non è leggibile dagli altri utenti. Questo file è escluso da Git tramite `.gitignore`.
+
+Dalla **radice del progetto**, eseguire una sola volta:
+
+```bash
+python3 - <<'PY'
+from getpass import getpass
+from pathlib import Path
+import os
+
+secret_file = Path('ui_portale/.provider-readonly-secret')
+if secret_file.exists() or secret_file.is_symlink():
+    raise SystemExit('Password Provider già configurata: nessuna modifica effettuata.')
+
+password = getpass('Crea una password Provider (almeno 16 caratteri): ')
+if len(password) < 16:
+    raise SystemExit('La password deve contenere almeno 16 caratteri.')
+if password != getpass('Conferma password: '):
+    raise SystemExit('Le password non coincidono.')
+
+old_umask = os.umask(0o077)
+try:
+    with secret_file.open('x', encoding='utf-8') as file:
+        file.write(password + '\n')
+    secret_file.chmod(0o600)
+finally:
+    os.umask(old_umask)
+
+print('Password Provider configurata sul computer locale.')
+PY
+```
+
+Il comando non mostra la password sullo schermo, non sovrascrive una configurazione esistente e non la carica su GitHub. All'avvio di `python3 ui_portale/server.py`, selezionare **Provider** e inserire la password scelta. Anche le operazioni amministrative di conferma possono richiederla nuovamente. Se la password viene persa, la sua sostituzione deve essere eseguita **localmente**, non modificando i file pubblicati; arrestare prima il portale e proteggere la nuova credenziale con gli stessi permessi. Questa autenticazione serve alla dimostrazione locale, **non** a esporre il portale su Internet.
+
 Le fotografie e alcune risorse decorative non sono incluse nella distribuzione del codice; la galleria può mostrare segnaposto in assenza delle immagini.
 
 ## 5. Test, arresto e limiti di riproducibilità
